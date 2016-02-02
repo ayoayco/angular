@@ -9,23 +9,35 @@
 		.products-list li {
 			width: 350px;
 			padding: 30px;
+			margin: 3px;
+			min-height: 320px
+		}
+		#products-panel {
+			padding: 5px;
+		}
+		.product-thumb {
+			margin-left: 70px;
+			width: 110px;
 		}
 	</style>
 </head>
-<body ng-controller="StoreController as store" >
+<body ng-controller="StoreController as x" >
 
 
-	<div >
+	<div id="products-panel">
+		<button ng-click="x.sortItems()">Sort by Price</button>
 		<ul class="list-group products-list">
-			<li class="list-group-item"
-				ng-hide="x.soldOut"
-				ng-repeat="x in store.products">
+			<li class="list-group-item pull-left"
+				ng-hide="y.soldOut"
+				ng-repeat="y in x.products  | orderBy:x.sortString">
 				<h3>
-				{{x.name}}
-				<em class="pull-right">{{x.price | currency}}</em>
+<!-- name -->		{{y.name}}
+<!-- price -->		<em class="pull-right">{{y.price | currency}}</em>
 				</h3>
-				<p>{{x.description}}</p>
-				<button ng-show="x.canPurchase"> Add to Cart </button>
+<!-- thumb -->	<img ng-src="{{y.images}}" alt="{{y.name}}"
+					class="product-thumb" />
+<!-- desc -->	<p><strong>Description: </strong>{{y.description}}</p>
+				<button ng-show="y.canPurchase"> Add to Cart </button>
 			</li>
 		</ul>
 	</div>
