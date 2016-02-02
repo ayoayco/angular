@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test angular</title>
+	<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+	</script>
+</head>
+<body ng-app="myApp">
+
+	<h2>Project NOAH Hazards</h2>
+
+	<div ng-controller="myCtrl">
+
+		<ul id="hazardslist">
+			<li ng-repeat="hazard in hazards" ng-init="hazardsindex = 0">
+				hazards[{{$index}}] : {{hazard.verbose_name}}
+				<ul ng-repeat="layers in hazard">
+					<li ng-repeat="layer in layers">
+						{{layer.geoserver_layer}}
+						<ul>
+							<li>SRID : {{layer.srid}}</li>
+							<li>PSGC : {{layer.mun_city_psgc}}</li>
+							<li>Center : 
+								({{layer.center.lat}} , {{layer.center.lng}})
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+	
+	<script type="text/javascript">
+		var app = angular.module("myApp", []);
+		app.controller("myCtrl", function($scope, $http){
+			$scope.working="It is working!";
+			var i=0;
+			$scope.getIndex = function(){
+				return i++;
+			}
+			$http.get("test.html").then(
+				function(response){
+					$scope.hazards = response.data.data;
+				},
+				function(response){
+					$scope.hazards = response.statusText;
+				}
+			);
+		});
+	</script>
+</body>
+</html>

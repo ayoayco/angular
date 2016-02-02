@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gemStore">
+<!-- run module "store" when this DOM loads -->
+<head>
+	<meta charset="UTF-8">
+	<title>Gem Store</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+	<style>
+		.products-list li {
+			width: 350px;
+			padding: 30px;
+		}
+	</style>
+</head>
+<body ng-controller="StoreController as store" >
+
+
+	<div >
+		<ul class="list-group products-list">
+			<li class="list-group-item"
+				ng-hide="x.soldOut"
+				ng-repeat="x in store.products">
+				<h3>
+				{{x.name}}
+				<em class="pull-right">{{x.price | currency}}</em>
+				</h3>
+				<p>{{x.description}}</p>
+				<button ng-show="x.canPurchase"> Add to Cart </button>
+			</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
