@@ -1,0 +1,1 @@
+This repository contains files I created while studying AngularJS.
