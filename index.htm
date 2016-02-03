@@ -23,6 +23,9 @@
         .product-thumb {
             min-width: 150px;
         }
+
+        #product-name span{
+        }
     </style>
 </head>
 <body ng-controller="StoreController as x">
@@ -39,12 +42,12 @@
             <li class="list-group-item pull-left products-item"
                 ng-hide="y.soldOut"
                 ng-repeat="y in x.products  | orderBy: x.sortString">
-                <h3 class="list-group-item-heading">
-                    <!-- name -->		{{y.name}}
+                <h3 class="list-group-item-heading" id="product-name">
+                    <span>{{y.name}}</span>
                     <a href="#" ng-show="y.canPurchase" class="btn btn-danger pull-right">Buy ({{y.price | currency}})</a>
                 </h3>
                 <section class="panel">
-                    <!-- thumb -->	<img ng-src="images/{{y.images}}" alt="{{y.name}}"
+     <!-- thumb -->	<img ng-src="images/{{y.images}}" alt="{{y.name}}"
                                            class="product-thumb" />
                 </section>
                 <section class="panel panel-default" ng-controller="panelCtrl as panel">
@@ -61,26 +64,29 @@
                             </li>
                         </ul>
                     </nav>
-                    <!-- desc -->	<p class="panel-body" ng-show="panel.isSelected(1)">
+    <!-- desc -->	<p class="panel-body" ng-show="panel.isSelected(1)">
                         <strong>Description: </strong>{{y.description}}
                     </p>
-                    <!-- specs -->	<p class="panel-body" ng-show="panel.isSelected(2)">
+    <!-- specs -->	<p class="panel-body" ng-show="panel.isSelected(2)">
                         <strong>Specification: </strong>{{y.specs}}
                     </p>
-                    <!-- review -->	<blockquote class="panel-body" ng-show="panel.isSelected(3)"
-                                                   ng-repeat="review in y.reviews">
+    <!-- review -->	<blockquote class="panel-body" ng-show="panel.isSelected(3)"
+                        ng-repeat="review in y.reviews">
                         <strong>Stars: {{review.stars}}</strong> | {{review.body}}<br /> --{{review.author}}
                     </blockquote>
                     <form name="reviewForm" ng-show="panel.isSelected(3)">
-                        <select>
-                            <option>1 star</option>
-                            <option>2 stars</option>
-                            <option>3 stars</option>
-                            <option>4 stars</option>
-                            <option>5 stars</option>
+                        <blockquote class="panel-body" ng-show="panel.isSelected(3)">
+                            <strong>Stars: {{review.stars}}</strong> | {{review.body}} <br /> --<em>{{review.author || "put your valid email address"}}</em>
+                        </blockquote>
+                        <select ng-model="review.stars">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
                         </select><br />
-                        <textarea></textarea><br />
-                        <input type="email" placeholder="Email Address" />
+                        <textarea ng-model="review.body"></textarea><br />
+                        <input ng-model="review.author" type="email" name="author" placeholder="Email Address" />
                         <input type="submit" value="Submit" />
                     </form>
                 </section>

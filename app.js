@@ -14,10 +14,10 @@
 
 	app.controller('StoreController', function(){
 		this.products = gems; 
-		this.sortItems = function(){
-			if(this.sortString === "price") this.sortString = "-price";
-			else this.sortString = "price";
-		}
+		this.sortItems = function () {
+		    if (this.sortString === "price") this.sortString = "-price";
+		    else this.sortString = "price";
+		};
 	});
 
 
@@ -44,7 +44,7 @@
 			images:'1.png'	
 		},
 		{
-			name: 'Common Soul Gem of Oblivion',
+			name: 'Common Soul Gem',
 			price: 5.50,
 			description: 'Great Gem too.',
 			specs: 'Specs Specs Specs.',
