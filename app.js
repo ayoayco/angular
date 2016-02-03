@@ -44,7 +44,7 @@
 			images:'1.png'	
 		},
 		{
-			name: 'Common Soul Gem',
+			name: 'Common Soul Gem of Oblivion',
 			price: 5.50,
 			description: 'Great Gem too.',
 			specs: 'Specs Specs Specs.',

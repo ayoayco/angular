@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" ng-app="gemStore">
 <!-- run module "store" when this DOM loads -->
 <head>
@@ -6,12 +6,15 @@
 	<title>Gem Store</title>
 	<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
 	<style>
-		.products-item {
-			width: 400px;
-			padding: 30px;
-			margin: 3px;
-			min-height: 420px
+		body {
+			background-color: #ececec;
 		}
+        .products-item {
+            width: 400px;
+            padding: 30px;
+            margin: 3px;
+            min-height: 420px;
+        }
 		#products-panel {
 			padding: 5px;
 		}
@@ -24,10 +27,10 @@
 <body ng-controller="StoreController as x" >
 
 	<nav class="navbar navbar-default" role="navigation">
-		<a class="navbar-brand" href="#">AngularJS Test App: Gem Store</a>
+		<a class="navbar-brand" href>AngularJS Test App: Gem Store</a>
+        <img src="images/294c816f3bf113ce9f18910a34ef93dd.jpg" />
 		<button ng-click="x.sortItems()" class="btn navbar-btn btn-default">Sort by Price</button>
 	</nav>
-
 	<section id="products-panel">
 		<ul class="list-group products-list"
 			ng-init="x.sortString = 'price'">
@@ -36,23 +39,23 @@
 				ng-repeat="y in x.products  | orderBy: x.sortString">
 				<h3 class="list-group-item-heading">
 <!-- name -->		{{y.name}}
-					<a href="#" ng-show="y.canPurchase" class="btn btn-default pull-right">Buy ({{y.price | currency}})</a>
+					<a href="#" ng-show="y.canPurchase" class="btn btn-danger pull-right">Buy ({{y.price | currency}})</a>
 				</h3>
 				<section class="panel">
-<!-- thumb -->	<img ng-src="{{y.images}}" alt="{{y.name}}"
+<!-- thumb -->	<img ng-src="images/{{y.images}}" alt="{{y.name}}"
 						class="product-thumb" />
 				</section>
 				<section class="panel panel-default" ng-controller="panelCtrl as panel">
 					<nav role="navigation" class="panel-heading">
 						<ul class="nav nav-pills">
 							<li ng-class="{active:panel.isSelected(1)}">
-								<a ng-click="panel.setTab(1)" href="#">Description</a>
+								<a ng-click="panel.setTab(1)" href>Description</a>
 							</li>
 							<li ng-class="{active:panel.isSelected(2)}">
-								<a ng-click="panel.setTab(2)"  href="#">Specifications</a>
+								<a ng-click="panel.setTab(2)"  href>Specifications</a>
 							</li>
 							<li ng-class="{active:panel.isSelected(3)}">
-								<a ng-click="panel.setTab(3)"  href="#">Reviews</a>
+								<a ng-click="panel.setTab(3)"  href>Reviews</a>
 							</li>
 						</ul>
 					</nav>
@@ -62,10 +65,10 @@
 	<!-- specs -->	<p class="panel-body" ng-show="panel.isSelected(2)">
 						<strong>Specification: </strong>{{y.specs}}
 					</p>
-	<!-- review -->	<p class="panel-body" ng-show="panel.isSelected(3)"
+	<!-- review -->	<blockquote class="panel-body" ng-show="panel.isSelected(3)"
 						ng-repeat="review in y.reviews">
 						<strong>Stars: {{review.stars}}</strong> | {{review.body}}<br /> --{{review.author}}
-					</p>
+					</blockquote>
 					<form name="reviewForm" ng-show="panel.isSelected(3)">
 						<select>
 							<option>1 star</option>
