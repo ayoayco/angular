@@ -74,19 +74,24 @@
                         ng-repeat="review in y.reviews">
                         <strong>Stars: {{review.stars}}</strong> | {{review.body}}<br /> --{{review.author}}
                     </blockquote>
-                    <form name="reviewForm" ng-show="panel.isSelected(3)">
+                    <form name="reviewForm"
+                          ng-show="panel.isSelected(3)"
+                          ng-controller="ReviewController as reviewCtrl"
+                          ng-submit="reviewCtrl.addReview(y)">
                         <blockquote class="panel-body" ng-show="panel.isSelected(3)">
-                            <strong>Stars: {{review.stars}}</strong> | {{review.body}} <br /> --<em>{{review.author || "put your valid email address"}}</em>
+                            <strong>
+                                Stars: {{reviewCtrl.review.stars}}</strong> | {{reviewCtrl.review.body}} <br />
+                                --<em>{{reviewCtrl.review.author || "put your valid email address"}}</em>
                         </blockquote>
-                        <select ng-model="review.stars">
+                        <select ng-model="reviewCtrl.review.stars">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
                         </select><br />
-                        <textarea ng-model="review.body"></textarea><br />
-                        <input ng-model="review.author" type="email" name="author" placeholder="Email Address" />
+                        <textarea ng-model="reviewCtrl.review.body"></textarea><br />
+                        <input ng-model="reviewCtrl.review.author" type="email" name="author" placeholder="Email Address" />
                         <input type="submit" value="Submit" />
                     </form>
                 </section>
