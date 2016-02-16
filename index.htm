@@ -26,74 +26,40 @@
 
         #product-name span{
         }
+        form blockquote {
+            color: #808080;
+        }
+        form .ng-dirty.ng-invalid {
+            border-color: #fa787e;
+        }
+        form .ng-dirty.ng-valid {
+            border-color: #78fa89;
+        }
+        form {
+            margin: 20px;
+        }
     </style>
 </head>
 <body ng-controller="StoreController as x">
 
     <nav class="navbar navbar-default" role="navigation">
-        <a class="navbar-brand" href>
-            Precious Gem Store - AngularJS Test App
-        </a>
+        <store-title></store-title>
         <button ng-click="x.sortItems()" class="btn navbar-btn btn-default">Sort by Price</button>
     </nav>
     <section id="products-panel">
-        <ul class="list-group products-list"
-            ng-init="x.sortString = 'price'">
-            <li class="list-group-item pull-left products-item"
-                ng-hide="y.soldOut"
-                ng-repeat="y in x.products  | orderBy: x.sortString">
+        <ul class="list-group products-list" ng-init="x.sortString = 'price'">
+            <li class="list-group-item pull-left products-item" ng-hide="y.soldOut"
+                    ng-repeat="y in x.products  | orderBy: x.sortString">
                 <h3 class="list-group-item-heading" id="product-name">
-                    <span>{{y.name}}</span>
-                    <a href="#" ng-show="y.canPurchase" class="btn btn-danger pull-right">Buy ({{y.price | currency}})</a>
+                    <product-title></product-title>
                 </h3>
                 <section class="panel">
-     <!-- thumb -->	<img ng-src="images/{{y.images}}" alt="{{y.name}}"
-                                           class="product-thumb" />
+                    <product-thumbnail></product-thumbnail>
                 </section>
                 <section class="panel panel-default" ng-controller="panelCtrl as panel">
-                    <nav role="navigation" class="panel-heading">
-                        <ul class="nav nav-pills">
-                            <li ng-class="{active:panel.isSelected(1)}">
-                                <a ng-click="panel.setTab(1)" href>Description</a>
-                            </li>
-                            <li ng-class="{active:panel.isSelected(2)}">
-                                <a ng-click="panel.setTab(2)" href>Specifications</a>
-                            </li>
-                            <li ng-class="{active:panel.isSelected(3)}">
-                                <a ng-click="panel.setTab(3)" href>Reviews</a>
-                            </li>
-                        </ul>
-                    </nav>
-    <!-- desc -->	<p class="panel-body" ng-show="panel.isSelected(1)">
-                        <strong>Description: </strong>{{y.description}}
-                    </p>
-    <!-- specs -->	<p class="panel-body" ng-show="panel.isSelected(2)">
-                        <strong>Specification: </strong>{{y.specs}}
-                    </p>
-    <!-- review -->	<blockquote class="panel-body" ng-show="panel.isSelected(3)"
-                        ng-repeat="review in y.reviews">
-                        <strong>Stars: {{review.stars}}</strong> | {{review.body}}<br /> --{{review.author}}
-                    </blockquote>
-                    <form name="reviewForm"
-                          ng-show="panel.isSelected(3)"
-                          ng-controller="ReviewController as reviewCtrl"
-                          ng-submit="reviewCtrl.addReview(y)">
-                        <blockquote class="panel-body" ng-show="panel.isSelected(3)">
-                            <strong>
-                                Stars: {{reviewCtrl.review.stars}}</strong> | {{reviewCtrl.review.body}} <br />
-                                --<em>{{reviewCtrl.review.author || "put your valid email address"}}</em>
-                        </blockquote>
-                        <select ng-model="reviewCtrl.review.stars">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select><br />
-                        <textarea ng-model="reviewCtrl.review.body"></textarea><br />
-                        <input ng-model="reviewCtrl.review.author" type="email" name="author" placeholder="Email Address" />
-                        <input type="submit" value="Submit" />
-                    </form>
+                    <product-detail-nav></product-detail-nav>
+                    <product-detail></product-detail>
+                    <product-review-form></product-review-form>
                 </section>
             </li>
         </ul>

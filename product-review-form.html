@@ -1,0 +1,25 @@
+﻿<form name="reviewForm"
+      ng-show="panel.isSelected(3)"
+      ng-controller="ReviewController as reviewCtrl"
+      ng-submit="reviewForm.$valid && reviewCtrl.addReview(y)" accept-charset=""
+      novalidate>
+    <blockquote class="panel-body" ng-show="panel.isSelected(3)">
+        <strong>
+            Stars: {{reviewCtrl.review.stars}}
+        </strong> | {{reviewCtrl.review.body}} <br />
+        <small>{{reviewCtrl.review.author}}</small>
+    </blockquote>
+    <select placeholder="Rating" class="form-control" ng-model="reviewCtrl.review.stars" required>
+        <option class="">Rating</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select><br />
+    <textarea placeholder="Review Body" class="form-control" ng-model="reviewCtrl.review.body" required></textarea><br />
+    <input class="form-control" ng-model="reviewCtrl.review.author" type="email" name="author" placeholder="Email Address" required />
+    <!--<div>Review for <em>{{y.name}}</em> is {{reviewForm.$valid || 'invalid' }}</div>-->
+    <br />
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</form>

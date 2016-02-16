@@ -23,9 +23,52 @@
 	app.controller('ReviewController', function () {
 	    this.review = {};
 	    this.addReview = function (product) {
+	        this.review.createdOn = Date.now();
 	        product.reviews.push(this.review);
 	        this.review = {};
 	    };
+	});
+
+	app.directive('storeTitle', function(){
+	    return{
+	        restrict:'E',
+            templateURL: 'store-title.html'
+	    }
+	});
+
+	app.directive('productReviewForm', function(){
+	    return {
+	        restrict: 'E',
+            templateUrl: 'product-review-form.html'
+	    }
+	});
+
+	app.directive('productDetail', function () {
+	    return {
+	        restrict: 'E',
+            templateUrl: 'product-detail.html'
+	    }
+	});
+
+	app.directive('productDetailNav', function () {
+	    return {
+	        restrict: 'E',
+            templateUrl: "product-detail-nav.html"
+	    }
+	})
+
+	app.directive('productThumbnail', function () {
+	    return {
+	        restrict: 'E',
+            templateUrl: "product-thumbnail.html"
+	    }
+	});
+
+	app.directive('productTitle', function () {
+	    return {
+	        restrict: 'E',
+	        templateUrl: 'product-title.html'
+	    }
 	});
 
 	var gems = [
@@ -36,14 +79,16 @@
 			specs: 'Specs Specs Specs.',
 			reviews: [
 				{
-					stars:5,
-					body: 'Review Review Review.',
-					author: 'Ayo Ayco'
+				    stars:5,
+				    body: 'Review Review Review.',
+				    author: 'Ayo Ayco',
+				    createdOn: 12345643
 				},
 				{
 					stars:5,
 					body: 'Review Review Review.',
-					author: 'Ayo Ayco'
+					author: 'Ayo Ayco',
+				    createdOn: 12345643
 				}
 			],
 			canPurchase: true,
@@ -59,12 +104,14 @@
 				{
 					stars:5,
 					body: 'Review Review Review.',
-					author: 'Ayo Ayco'
+					author: 'Ayo Ayco',
+				    createdOn: 12345643
 				},
 				{
 					stars:5,
 					body: 'Review Review Review.',
-					author: 'Ayo Ayco'
+					author: 'Ayo Ayco',
+					createdOn: 12345643
 				}
 			],
 			canPurchase: true,
@@ -80,12 +127,14 @@
 				{
 					stars:5,
 					body: 'Review Review Review.',
-					author: 'Ayo Ayco'
+					author: 'Ayo Ayco',
+					createdOn: 12345643
 				},
 				{
 					stars:5,
 					body: 'Review Review Review.',
-					author: 'Ayo Ayco'
+					author: 'Ayo Ayco',
+					createdOn: 12345643
 				}
 			],
 			canPurchase: true,
@@ -101,12 +150,14 @@
 				{
 					stars:5,
 					body: 'Review Review Review.',
-					author: 'Ayo Ayco'
+					author: 'Ayo Ayco',
+					createdOn: 12345643
 				},
 				{
 					stars:5,
 					body: 'Review Review Review.',
-					author: 'Ayo Ayco'
+					author: 'Ayo Ayco',
+					createdOn: 12345643
 				}
 			],
 			canPurchase: true,
