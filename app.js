@@ -29,10 +29,10 @@
 	    };
 	});
 
-	app.directive('storeTitle', function(){
-	    return{
-	        restrict:'E',
-            templateURL: 'store-title.html'
+	app.directive('storeTitle', function () {
+	    return {
+	        restrict: 'E',
+            templateUrl: 'store-title.html'
 	    }
 	});
 
