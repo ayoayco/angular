@@ -1,6 +1,13 @@
 ﻿(function () {
     var app = angular.module('store-products', []);
 
+    app.directive('storeTitle', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'store-title.html'
+        }
+    });
+
     app.directive("productPanel", function () {
         return {
             restrict: 'E',
