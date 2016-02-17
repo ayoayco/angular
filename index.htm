@@ -48,19 +48,9 @@
     </nav>
     <section id="products-panel">
         <ul class="list-group products-list" ng-init="x.sortString = 'price'">
-            <li class="list-group-item pull-left products-item" ng-hide="y.soldOut"
-                    ng-repeat="y in x.products  | orderBy: x.sortString">
-                <h3 class="list-group-item-heading" id="product-name">
-                    <product-title></product-title>
-                </h3>
-                <section class="panel">
-                    <product-thumbnail></product-thumbnail>
-                </section>
-                <section class="panel panel-default" ng-controller="panelCtrl as panel">
-                    <product-detail-nav></product-detail-nav>
-                    <product-detail></product-detail>
-                    <product-review-form></product-review-form>
-                </section>
+            <li class="list-group-item pull-left products-item" ng-hide="y.soldOut" ng-repeat="y in x.products  | orderBy: x.sortString"> 
+               <product-title></product-title>
+               <product-panel></product-panel>
             </li>
         </ul>
     </section>

@@ -1,17 +1,7 @@
 (function(){
 
 	var app = angular.module('gemStore', []);
-
-	app.controller("panelCtrl", function(){
-		this.tab = 1;
-		this.setTab = function(tabnum){
-			this.tab = tabnum;
-		};
-		this.isSelected = function(tabnum){
-			return this.tab === tabnum;
-		};
-	});
-
+    
 	app.controller('StoreController', function(){
 		this.products = gems; 
 		this.sortItems = function () {
@@ -26,6 +16,23 @@
 	        this.review.createdOn = Date.now();
 	        product.reviews.push(this.review);
 	        this.review = {};
+	    };
+	});
+
+	app.directive("productPanel", function () {
+	    return {
+	        restrict: 'E',
+	        templateUrl: 'product-panel.html',
+	        controller: function () {
+	            this.tab = 1;
+	            this.setTab = function (tabnum) {
+	                this.tab = tabnum;
+	            };
+	            this.isSelected = function (tabnum) {
+	                return this.tab === tabnum;
+	            };
+	        },
+            controllerAs: 'panel'
 	    };
 	});
 
